@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.caodnhe150776.myproject"
+    namespace = "com.appmanager.myproject"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.caodnhe150776.myproject"
+        applicationId = "com.appmanager.myproject"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
