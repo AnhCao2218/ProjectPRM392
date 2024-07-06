@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -38,6 +39,8 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding =true
+        dataBinding =true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -63,6 +66,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.messaging)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -70,6 +75,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation ("com.google.android.firebase:firebase-auth:21.0.2")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 
     implementation ("io.reactivex.rxjava3:rxandroid:3.0.0")
@@ -83,4 +89,9 @@ dependencies {
     implementation("io.github.pilgr:paperdb:2.7.2")
     implementation("com.google.code.gson:gson:2.11.0")
     implementation ("com.airbnb.android:lottie:6.4.1")
+    implementation ("com.github.fornewid:neumorphism:0.3.2")
+
+    implementation ("com.github.dhaval2404:imagepicker:2.1")
+
+
 }

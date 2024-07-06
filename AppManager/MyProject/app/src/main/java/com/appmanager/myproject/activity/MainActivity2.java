@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -37,7 +39,10 @@ import com.appmanager.myproject.model.User;
 import com.appmanager.myproject.retrofit.ApiBanHang;
 import com.appmanager.myproject.retrofit.RetrofitCilient;
 import com.appmanager.myproject.utlis.Utlis;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
@@ -100,6 +105,7 @@ public class MainActivity2 extends AppCompatActivity {
             startActivity(intent);
             }
         });
+        getToken();
         ActionBar();
 
         mangloaiSp= new ArrayList<>();
@@ -174,6 +180,7 @@ public class MainActivity2 extends AppCompatActivity {
                         break;
                     case 7:
                         Paper.book().delete("User");
+                        FirebaseAuth.getInstance().signOut();
                         Intent dangnhap= new Intent(getApplicationContext(), DangNhapActivity.class);
                         startActivity(dangnhap);
                         finish();
@@ -201,6 +208,28 @@ public class MainActivity2 extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Khong ket noi duoc sever"+throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                 ));
+    }
+
+    private void getToken(){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnSuccessListener(new OnSuccessListener<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        if(!TextUtils.isEmpty(s)){
+                            compositeDisposable.add(apiBanHang.updatetoken(Utlis.user_current.getId(),s)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            messageModel -> {
+
+                                            },
+                                            throwable -> {
+                                                Log.d("log",throwable.getMessage());
+                                            }
+                                    ));
+                        }
+                    }
+                });
     }
 
     private void getLoaiSanPham() {

@@ -5,7 +5,30 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".activity.QuanliActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:title="Quản lí"
+        android:background="#ffffff"
+        app:layout_constraintBaseline_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_them"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_add_24"/>
+    </androidx.appcompat.widget.Toolbar>
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:id="@+id/recycleview_ql"
+    app:layout_constraintTop_toBottomOf="@+id/toolbar"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_margin="5dp"/>
     
 </androidx.constraintlayout.widget.ConstraintLayout>
