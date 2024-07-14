@@ -8,7 +8,7 @@
     tools:context=".activity.ChiTietActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:background="#2BC831"
+        android:background="#D0DAD0"
         app:title="Chi tiết sản phẩm"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
@@ -25,6 +25,7 @@
                 android:layout_gravity="top|right"
                 android:layout_height="28dp"/>
             <ImageView
+                android:layout_gravity="center"
                 android:src="@drawable/ic_shopping_cart_24"
                 android:layout_width="35dp"
                 android:layout_height="35dp"/>
@@ -57,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
             <TextView
+                android:gravity="center"
                 android:id="@+id/txtgiasp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
@@ -67,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <Spinner
+                android:layout_gravity="center"
                 android:id="@+id/spiner"
                 android:background="@drawable/spinner"
                 android:layout_width="match_parent"

@@ -4,6 +4,7 @@ package com.caodnhe150776.myproject.retrofit;
 
 import com.caodnhe150776.myproject.model.DonHangModel;
 import com.caodnhe150776.myproject.model.LoaiSpModel;
+import com.caodnhe150776.myproject.model.MessageModel;
 import com.caodnhe150776.myproject.model.SanPhamMoiModel;
 import com.caodnhe150776.myproject.model.UserModel;
 
@@ -33,7 +34,8 @@ public interface ApiBanHang {
             @Field("email") String email,
             @Field("password") String password,
             @Field("username") String username,
-            @Field("mobile") String mobile
+            @Field("mobile") String mobile,
+            @Field("uid") String uid
 
     );
     @POST("dangnhap.php")
@@ -71,4 +73,16 @@ public interface ApiBanHang {
             @Field("search") String search
     );
 
+    @POST("updatetoken.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updatetoken(
+            @Field("id") int id,
+            @Field("token") String token
+
+    );
+    @POST("gettoken.php")
+    @FormUrlEncoded
+    Observable<UserModel> gettoken(
+            @Field("status") int status
+    );
 }

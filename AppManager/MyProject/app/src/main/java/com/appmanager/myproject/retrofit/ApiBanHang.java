@@ -114,4 +114,17 @@ public interface ApiBanHang {
             @Field("token") String token
 
     );
+    @POST("updatedonhang.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updatedonhang(
+            @Field("id") int id,
+            @Field("trangthai") int trangthai
+
+    );
+    @POST("gettoken.php")
+    @FormUrlEncoded
+    Observable<UserModel> gettoken(
+            @Field("status") int status,
+            @Field("userid") int userid
+    );
 }

@@ -17,7 +17,6 @@
         android:orientation="vertical">
       <androidx.appcompat.widget.Toolbar
           android:id="@+id/toolbarmanhinhchinh"
-          app:title="Tranhg Chính"
           android:background="#FF00"
           android:layout_width="match_parent"
           android:layout_height="?attr/actionBarSize">
@@ -42,11 +41,15 @@
               android:layout_width="28dp"
               android:id="@+id/menu_sl"
               android:layout_gravity="top|right"
-              android:layout_height="28dp"/>
+              android:layout_height="28dp">
+
+          </com.nex3z.notificationbadge.NotificationBadge>
+
           <ImageView
-              android:src="@drawable/ic_shopping_cart_24"
+              android:layout_gravity="center"
               android:layout_width="35dp"
-              android:layout_height="35dp"/>
+              android:layout_height="35dp"
+              android:src="@drawable/ic_shopping_cart_24" />
         </FrameLayout>
         </LinearLayout>
       </androidx.appcompat.widget.Toolbar>
@@ -63,14 +66,7 @@
           android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="match_parent">
-        <TextView
-            android:text="Sản phẩm mới nhất"
-            android:id="@+id/tv"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -75,7 +75,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation ("com.google.android.firebase:firebase-auth:21.0.2")
+    //implementation ("com.google.android.firebase:firebase-auth:21.0.2")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 
     implementation ("io.reactivex.rxjava3:rxandroid:3.0.0")

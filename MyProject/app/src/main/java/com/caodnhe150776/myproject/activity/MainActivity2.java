@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.Animation;
@@ -40,7 +42,10 @@ import com.caodnhe150776.myproject.model.User;
 import com.caodnhe150776.myproject.retrofit.ApiBanHang;
 import com.caodnhe150776.myproject.retrofit.RetrofitCilient;
 import com.caodnhe150776.myproject.utlis.Utlis;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.nex3z.notificationbadge.NotificationBadge;
 
 import org.jetbrains.annotations.Async;
@@ -105,6 +110,7 @@ public class MainActivity2 extends AppCompatActivity {
             startActivity(intent);
             }
         });
+        getToken();
         ActionBar();
 
         mangloaiSp= new ArrayList<>();
@@ -147,6 +153,28 @@ public class MainActivity2 extends AppCompatActivity {
         badge.setText(String.valueOf(totalItem));
     }
 
+    private void getToken(){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnSuccessListener(new OnSuccessListener<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        if(!TextUtils.isEmpty(s)){
+                            compositeDisposable.add(apiBanHang.updatetoken(Utlis.user_current.getId(),s)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            messageModel -> {
+
+                                            },
+                                            throwable -> {
+                                                Log.d("log",throwable.getMessage());
+                                            }
+                                    ));
+                        }
+                    }
+                });
+    }
+
     private void getEventClick() {
         listViewManHinhChinh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -175,6 +203,7 @@ public class MainActivity2 extends AppCompatActivity {
                         Paper.book().delete("User");
                         Intent dangnhap= new Intent(getApplicationContext(), DangNhapActivity.class);
                         startActivity(dangnhap);
+                        FirebaseAuth.getInstance().signOut();
                         finish();
                         break;
                 }

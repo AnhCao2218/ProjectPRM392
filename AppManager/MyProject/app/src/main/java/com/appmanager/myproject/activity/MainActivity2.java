@@ -173,7 +173,6 @@ public class MainActivity2 extends AppCompatActivity {
                         startActivity(donhang);
                         break;
                     case 6:
-
                         Intent quanli= new Intent(getApplicationContext(), QuanliActivity.class);
                         startActivity(quanli);
                         finish();

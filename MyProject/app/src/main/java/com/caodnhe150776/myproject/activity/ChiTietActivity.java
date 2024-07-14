@@ -106,7 +106,7 @@ public class ChiTietActivity extends AppCompatActivity {
         } else {
             int soluong = Integer.parseInt(spinner.getSelectedItem().toString());
             String giaString = sanPhamMoi.getGiasp().replaceAll("\\.", ""); // Loại bỏ dấu chấm từ chuỗi
-            long gia = Long.parseLong(giaString) * soluong;
+            long gia = Long.parseLong(giaString) ;
             GioHang gioHang = new GioHang();
             gioHang.setGiasp(gia);
             gioHang.setSoluong(soluong);

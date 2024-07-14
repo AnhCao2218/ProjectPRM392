@@ -149,7 +149,7 @@ public class DangNhapActivity extends AppCompatActivity {
                                 });
                     }
 
-                    dangNhap(str_email,str_password);
+
                 }
             }
         });

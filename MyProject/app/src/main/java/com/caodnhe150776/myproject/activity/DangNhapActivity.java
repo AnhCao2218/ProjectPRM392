@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
@@ -21,6 +22,11 @@ import com.caodnhe150776.myproject.R;
 import com.caodnhe150776.myproject.retrofit.ApiBanHang;
 import com.caodnhe150776.myproject.retrofit.RetrofitCilient;
 import com.caodnhe150776.myproject.utlis.Utlis;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -36,6 +42,8 @@ public class DangNhapActivity extends AppCompatActivity {
     ApiBanHang apiBanHang;
     boolean isLogin=false;
     CompositeDisposable compositeDisposable;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,8 @@ public class DangNhapActivity extends AppCompatActivity {
         email=findViewById(R.id.email_dn);
         password=findViewById(R.id.password_dn);
         btndangnhap=findViewById(R.id.btndangnhap);
+        firebaseAuth=FirebaseAuth.getInstance();
+        user=firebaseAuth.getCurrentUser();
         apiBanHang= RetrofitCilient.getInstance(Utlis.BASE_URL).create(ApiBanHang.class);
         compositeDisposable = new CompositeDisposable();
         if(Paper.book().read("email")!=null&&Paper.book().read("password")!=null){
@@ -124,7 +134,19 @@ public class DangNhapActivity extends AppCompatActivity {
                 }else {
                     Paper.book().write("email",str_email);
                     Paper.book().write("password",str_password);
-                    dangNhap(str_email,str_password);
+                    if(user!=null){
+                        dangNhap(str_email,str_password);
+                    }else {
+                        firebaseAuth.signInWithEmailAndPassword(str_email,str_password)
+                                .addOnCompleteListener(DangNhapActivity.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if(task.isSuccessful()){
+                                            dangNhap(str_email,str_password);
+                                        }
+                                    }
+                                });
+                    }
                 }
             }
         });
