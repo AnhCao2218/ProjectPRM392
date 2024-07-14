@@ -250,9 +250,11 @@ public class MainActivity2 extends AppCompatActivity {
 
     private void ActionViewFliper() {
         List<String> mangquangcao= new ArrayList<>();
-        mangquangcao.add("https://mauweb.monamedia.net/thegioididong/wp-content/uploads/2017/12/banner-Le-hoi-phu-kien-800-300.png");
-        mangquangcao.add("https://mauweb.monamedia.net/thegioididong/wp-content/uploads/2017/12/banner-HC-Tra-Gop-800-300.png");
-        mangquangcao.add("https://mauweb.monamedia.net/thegioididong/wp-content/uploads/2017/12/banner-big-ky-nguyen-800-300.jpg");
+        mangquangcao.add("https://smarthomekit.vn/wp-content/uploads/2024/06/custom-access-ios18-banner-1024x576.jpg");
+        mangquangcao.add("https://s3.cloud.cmctelecom.vn/tinhte1/2018/09/4429992_GIAM1TR.png");
+        mangquangcao.add("https://tragop.online/uploads/fbimgs/mua-ban-tra-gop-dien-thoai-iphone-lai-suat-0.jpg");
+        mangquangcao.add("https://cdn11.dienmaycholon.vn/filewebdmclnew/DMCL21/Picture//Tm/Tm_picture_2347/samsung-a35a55-_mobi_261_1200.png.webp");
+        mangquangcao.add("https://inkythuatso.com/uploads/thumbnails/800/2022/01/banner-may-tinh-inkythuatso-21-11-49-53.jpg");
 
         for (int i=0; i<mangquangcao.size();i++){
             ImageView imageView= new ImageView(getApplicationContext());

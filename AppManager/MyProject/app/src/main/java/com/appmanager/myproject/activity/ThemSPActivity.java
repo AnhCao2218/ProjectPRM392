@@ -91,8 +91,8 @@ public class ThemSPActivity extends AppCompatActivity {
     private void initData() {
         List<String> stringList= new ArrayList<>();
         stringList.add("Vui lòng chọn loại: ");
-        stringList.add("Loại 1");
-        stringList.add("Loại 2");
+        stringList.add("Điện Thoại");
+        stringList.add("Laptop");
         ArrayAdapter<String> adapter= new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,stringList);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -136,7 +136,7 @@ public class ThemSPActivity extends AppCompatActivity {
         String str_mota=binding.mota.getText().toString().trim();
         String str_hinhanh=binding.hinhanh.getText().toString().trim();
         if(TextUtils.isEmpty(str_tensp)|| TextUtils.isEmpty(str_giasp)||TextUtils.isEmpty(str_mota)||TextUtils.isEmpty(str_hinhanh)||loai==0){
-            Toast.makeText(getApplicationContext(),"Vui lòng nhạp ủ thông tin",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Vui lòng nhạp đủ thông tin",Toast.LENGTH_LONG).show();
         }else {
             compositeDisposable.add(apiBanHang.updatesp(str_tensp,str_giasp,str_hinhanh,str_mota,loai,spSua.getId())
                     .subscribeOn(Schedulers.io())
